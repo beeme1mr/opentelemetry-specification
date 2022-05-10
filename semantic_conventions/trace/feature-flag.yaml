@@ -1,0 +1,49 @@
+groups:
+  - id: feature_flag
+    prefix: feature_flag
+    brief: >
+      This semantic convention defines the attributes used to represent a
+      feature flag evaluation as a span.
+    span_kind: internal
+    attributes:
+      - id: flag_key
+        type: string
+        required: always
+        brief: The unique identifier of the feature flag.
+        examples: ["show-new-logo"]
+  - id: feature_flag.provider
+    prefix: feature_flag.provider
+    extends: feature_flag
+    brief: Semantic convention for the provider performing the flag evaluation.
+    attributes:
+      - id: name
+        type: string
+        required: always
+        brief: The name of the provider performing the flag evaluation.
+        examples: ["Flag Manager"]
+      - id: management_url
+        type: string
+        brief: The URL used to manage the feature flag in the provider.
+        examples: ["http://localhost:4200/flags/1"]
+  - id: feature_flag.evaluated
+    prefix: feature_flag.evaluated
+    extends: feature_flag
+    brief: Semantic convection for the values evaluated by provider.
+    attributes:
+      - id: variant
+        type: string
+        brief: The name associated with the evaluated value.
+        examples: ["reverse"]
+        required:
+          conditional: >
+            A variant should be used if it is available. If the variant is
+            present, feature_flag.evaluated.value should be omitted.
+      - id: value
+        type: string
+        brief: A string representation of the evaluated value.
+        examples: ["true", "red", "on"]
+        required:
+          conditional: >
+            The value should only be used if the variant is not available. How
+            the value is represented as a string should be determined by the
+            implementer.
