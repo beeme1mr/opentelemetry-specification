@@ -791,6 +791,21 @@ func MapToIndexScale0(value float64) int {
 }
 ```
 
+Implementations are permitted to round subnormal values up to the
+smallest normal value, which may permit the use of a built-in function:
+
+```golang
+
+func GetExponent(value float64) int {
+    // Note: Frexp() rounds submnormal values to the smallest normal
+    // value and returns an exponent corresponding to fractions in the
+    // range [0.5, 1), whereas we want [1, 2), so subtract 1 from the
+    // exponent.
+    _, exp := math.Frexp(value)
+    return exp - 1
+}
+```
+
 ##### Negative Scale: Extract and Shift the Exponent
 
 For negative scales, the index of a value equals the normalized
