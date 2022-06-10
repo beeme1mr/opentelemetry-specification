@@ -111,6 +111,34 @@ release.
 
 ### Metrics
 
+### Logs
+
+### Resource
+
+### Semantic Conventions
+
+### Compatibility
+
+### OpenTelemetry Protocol
+
+### SDK Configuration
+
+### Telemetry Schemas
+
+### Common
+
+## v1.12.0 (2022-06-10)
+
+### Context
+
+- No changes.
+
+### Traces
+
+- No changes.
+
+### Metrics
+
 - Clarify that API support for multi-instrument callbacks is permitted.
   ([#2263](https://github.com/open-telemetry/opentelemetry-specification/pull/2263)).
 - Clarify SDK behavior when view conflicts are present
@@ -213,7 +241,7 @@ release.
 
 ### Resource
 
-- Add browser.* attributes ([#2353](https://github.com/open-telemetry/opentelemetry-specification/pull/2353)).
+- No changes.
 
 ### Semantic Conventions
 
