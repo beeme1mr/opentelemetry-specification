@@ -8,42 +8,28 @@ groups:
     attributes:
       - id: flag_key
         type: string
-        required: always
+        requirement_level: required
         brief: The unique identifier of the feature flag.
-        examples: ["show-new-logo"]
-  - id: feature_flag.provider
-    prefix: feature_flag.provider
-    extends: feature_flag
-    brief: Semantic convention for the provider performing the flag evaluation.
-    attributes:
-      - id: name
+        examples: ["logo-color"]
+      - id: provider_name
         type: string
-        required: always
-        brief: The name of the provider performing the flag evaluation.
+        requirement_level: recommended
+        brief: The name of the service that performs the flag evaluation.
         examples: ["Flag Manager"]
-      - id: management_url
+      - id: evaluated_variant
         type: string
-        brief: The URL used to manage the feature flag in the provider.
-        examples: ["http://localhost:4200/flags/1"]
-  - id: feature_flag.evaluated
-    prefix: feature_flag.evaluated
-    extends: feature_flag
-    brief: Semantic convection for the values evaluated by provider.
-    attributes:
-      - id: variant
-        type: string
-        brief: The name associated with the evaluated value.
-        examples: ["reverse"]
-        required:
-          conditional: >
+        brief: The human readable name that identifies the evaluated value.
+        examples: ["red", "blue", "green"]
+        requirement_level:
+          conditionally_required: >
             A variant should be used if it is available. If the variant is
-            present, feature_flag.evaluated.value should be omitted.
-      - id: value
+            present, feature_flag.evaluated_value should be omitted.
+      - id: evaluated_value
         type: string
         brief: A string representation of the evaluated value.
-        examples: ["true", "red", "on"]
-        required:
-          conditional: >
+        examples: ["ff0000", "0000ff", "00ff00"]
+        requirement_level:
+          conditionally_required: >
             The value should only be used if the variant is not available. How
             the value is represented as a string should be determined by the
             implementer.
