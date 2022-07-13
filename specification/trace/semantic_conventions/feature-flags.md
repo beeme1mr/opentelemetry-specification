@@ -2,9 +2,12 @@
 
 **Status**: [Experimental](../../document-status.md)
 
+This document describes how a feature flag evaluation can be represented as a span in
+OpenTelemetry. The span can be used to determine the impact a feature has on a request.
+
 **Span kind:** MUST always be `INTERNAL`.
 
-The **span name** MUST be of the format `<feature_flag.provider_name> <feature_flag.flag_key>` provided that
+The **span name** SHOULD be of the format `<feature_flag.provider_name> <feature_flag.flag_key>` provided that
 `feature_flag.provider_name` is available. If `feature_flag.provider_name` is not available, the
 span SHOULD be named `Feature Flag <feature_flag.flag_key>`.
 
